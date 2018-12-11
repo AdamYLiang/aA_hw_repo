@@ -1,5 +1,6 @@
 require 'sqlite3'
 require 'singleton'
+require 'byebug'
 
 class PlayDBConnection < SQLite3::Database
   include Singleton
@@ -34,7 +35,7 @@ class Play
   end
 
   def self.find_by_playwright(name)
-    person = Playwright.find_by_name(new)
+    person = Playwright.find_by_name(name)
     raise "#{name} not found" unless person
     plays = PlayDBConnection.instance.execute(<<-SQL, person.id)
       SELECT
