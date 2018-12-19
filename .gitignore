@@ -1,0 +1,10 @@
+/log/*
+/tmp/*
+/spec/tmp
+/.bundle
+
+!/log/.keep
+!/tmp/.keep
+
+/node_modules
+/yarn-error.log
