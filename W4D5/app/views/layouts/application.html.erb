@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicAppAuth</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+    <a href="<%= bands_url %>">The Music App</a>
+    </header>
+ 
+    <% if logged_in? %>
+      <form action="<%= session_url %>" method="POST">
+      <%= auth_token %>
+        <input type="hidden" name="_method" value="DELETE">
+        <div class="login_content">
+        <a href=<%= user_url(current_user.id) %>>Account</a>
+        <input id="submit_button" type="submit" value="Logout">
+       </div>
+      </form>
+    <% else %>
+      <div class="login_content">
+        <a href="<%= new_session_url %>">Log in</a>
+        <a href="<%= new_user_url %>">Sign up</a>
+      </div>
+    <% end %>
+    <hr>
+
+    <% if flash[:errors] %>
+      <div class="errors">
+      <ul>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+      </ul>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
