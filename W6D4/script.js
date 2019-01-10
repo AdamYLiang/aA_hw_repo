@@ -39,7 +39,20 @@ favBtn.addEventListener("click", handleFavAdd);
 
   // adding new photos
 
-  // --- your code here!
+ const showPhotoForm = (e) => {
+  e.preventDefault(); 
+
+  const photoForm = document.querySelector(".photo-form-container");
+   if (photoForm.className === "photo-form-container") {
+     photoForm.className = "photo-form-container hidden";
+   } else {
+     photoForm.className = "photo-form-container";
+   }
+ };
+
+ const photoShowFormBtn = document.querySelector(".photo-show-button");
+ photoShowFormBtn.addEventListener("click", showPhotoForm);
+
 
 
 
